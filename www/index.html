@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
@@ -20,15 +20,28 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
-  </head>
-  <body ng-app="starter">
+</head>
+<body ng-app="starter" ng-controller="AppCtrl">
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-    </ion-pane>
-  </body>
+<ion-pane>
+    <ion-header-bar class="bar-stable">
+        <button class="button" ng-click="pickContact()">Contacts</button>
+        <h1 class="title">Pick Contacts</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+
+            <a class="item item-thumbnail-left" ng-repeat="contact in data.selectedContacts">
+                <img src="{{contact.photos[0].value}}" ng-if="contact.photos.length > 0">
+                <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Silver_-_replace_this_image_male.svg/200px-Silver_-_replace_this_image_male.svg.png" ng-if="contact.photos.length === 0">
+                <h2>{{contact.displayName}}</h2>
+                <p ng-if="contact.emails.length > 0">{{contact.emails[0].type}} : {{contact.emails[0].value}}</p>
+                <p ng-if="contact.phones.length > 0">{{contact.phones[0].type}} : {{contact.phones[0].value}}</p>
+            </a>
+
+        </div>
+        <p class="padding">Profiles courtesy of http://commons.wikimedia.org/wiki/File:Silver_-_replace_this_image_male.svg</p>
+    </ion-content>
+</ion-pane>
+</body>
 </html>
